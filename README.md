@@ -1,0 +1,2 @@
+# namerator
+team name generator
