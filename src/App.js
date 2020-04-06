@@ -2,6 +2,8 @@ import React from 'react';
 
 import './App.css';
 
+import Sentencer from 'sentencer';
+
 function Layout({children}) {
   return (
     <div className="h-full w-full flex flex-auto flex-col justify-center align-middle">
@@ -18,9 +20,9 @@ function Header({children}) {
   );
 }
 
-function GeneratedName() {
+function GeneratedName({children}) {
   return (
-    <span className="generated-name">Thunder Ponies</span>
+    <span className="generated-name">{children}</span>
   );
 }
 
@@ -32,20 +34,28 @@ function Button({children, color="indigo", className="", onClick, ...rest}) {
   );
 }
 
-function generateName() {
-  alert ("hello");
-}
 
-function App() {
-  return (
-    <Layout>
-      <Header>Namerator</Header>
-      <div className="text-center">
-        <GeneratedName></GeneratedName>
-        <Button onClick={generateName} className="ml-2">Generate</Button>
-      </div>
-    </Layout>
-  );
+
+class App extends React.Component {
+  state = {
+    generatedName: 'Thunder Ponies',
+  }
+
+  generateName = () => this.setState({generatedName: Sentencer.make("{{adjective}} {{noun}}")});
+
+  render() {
+    const {generatedName} = this.state
+
+    return (
+      <Layout>
+        <Header>Namerator</Header>
+        <div className="text-center">
+          <GeneratedName>{generatedName}</GeneratedName>
+          <Button onClick={this.generateName} className="ml-2">Generate</Button>
+        </div>
+      </Layout>
+    )
+  }
 }
 
 export default App;
