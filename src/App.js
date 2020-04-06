@@ -6,23 +6,33 @@ import Sentencer from 'sentencer';
 
 function Layout({children}) {
   return (
-    <div className="h-full w-full flex flex-auto flex-col justify-center align-middle">
-      {children}
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-lg w-full">
+        {children}
+      </div>
     </div>
   );
 }
 
+function Card({children, className=""}) {
+  return (
+    <div className={`mx-10 my-2 p-10 bg-white shadow overflow-hidden sm:rounded-lg ${className}`}>
+      {children}
+    </div>
+  )
+}
+
 function Header({children}) {
   return (
-    <h1 className="mb-4 text-center text-3xl font-bold leading-7 text-gray-900">
+    <h1 className="text-center text-3xl font-bold leading-7 text-gray-900">
       {children}
     </h1>
   );
 }
 
-function GeneratedName({children}) {
+function TeamName({children}) {
   return (
-    <span className="generated-name">{children}</span>
+    <span className="team-name">{children}</span>
   );
 }
 
@@ -34,28 +44,24 @@ function Button({children, color="indigo", className="", onClick, ...rest}) {
   );
 }
 
+function App() {
+  const generateTeamName = () => Sentencer.make("{{noun}} {{noun}}");
 
+  const [teamName, setTeamName] = React.useState(generateTeamName());
 
-class App extends React.Component {
-  state = {
-    generatedName: 'Thunder Ponies',
-  }
+  const randomizeTeamName = () => setTeamName(generateTeamName());
 
-  generateName = () => this.setState({generatedName: Sentencer.make("{{adjective}} {{noun}}")});
-
-  render() {
-    const {generatedName} = this.state
-
-    return (
-      <Layout>
+  return (
+    <Layout>
+      <Card>
         <Header>Namerator</Header>
-        <div className="text-center">
-          <GeneratedName>{generatedName}</GeneratedName>
-          <Button onClick={this.generateName} className="ml-2">Generate</Button>
-        </div>
-      </Layout>
-    )
-  }
+      </Card>
+      <Card className="text-center">
+        <TeamName>{teamName}</TeamName>
+        <Button onClick={randomizeTeamName} className="ml-2">Generate</Button>
+      </Card>
+    </Layout>
+  )
 }
 
 export default App;
