@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/namerator/static/css/main.5f361e03.chunk.css",
+    "main.js": "/namerator/static/js/main.4d9f4ab3.chunk.js",
+    "main.js.map": "/namerator/static/js/main.4d9f4ab3.chunk.js.map",
+    "runtime-main.js": "/namerator/static/js/runtime-main.2bf626b3.js",
+    "runtime-main.js.map": "/namerator/static/js/runtime-main.2bf626b3.js.map",
+    "static/js/2.b0e7ee11.chunk.js": "/namerator/static/js/2.b0e7ee11.chunk.js",
+    "static/js/2.b0e7ee11.chunk.js.map": "/namerator/static/js/2.b0e7ee11.chunk.js.map",
+    "index.html": "/namerator/index.html",
+    "precache-manifest.7a01262cb2a7a0400a3d2e1cae3487f4.js": "/namerator/precache-manifest.7a01262cb2a7a0400a3d2e1cae3487f4.js",
+    "service-worker.js": "/namerator/service-worker.js",
+    "static/css/main.5f361e03.chunk.css.map": "/namerator/static/css/main.5f361e03.chunk.css.map",
+    "static/js/2.b0e7ee11.chunk.js.LICENSE.txt": "/namerator/static/js/2.b0e7ee11.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/namerator/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2bf626b3.js",
+    "static/js/2.b0e7ee11.chunk.js",
+    "static/css/main.5f361e03.chunk.css",
+    "static/js/main.4d9f4ab3.chunk.js"
+  ]
+}
