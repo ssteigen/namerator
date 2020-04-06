@@ -44,6 +44,18 @@ function Button({children, color="indigo", className="", onClick, ...rest}) {
   );
 }
 
+function groupByLetter(words) {
+  return words.reduce(function(groupedWords, word) {
+    word = word.toLowerCase();
+    groupedWords[word[0]] = groupedWords[word[0]] || []
+    groupedWords[word[0]].push(word);
+    return groupedWords;
+  }, {})
+}
+
+console.log(groupByLetter(Sentencer._nouns));
+console.log(groupByLetter(Sentencer._adjectives));
+
 function App() {
   const generateTeamName = () => Sentencer.make("{{noun}} {{noun}}");
 
