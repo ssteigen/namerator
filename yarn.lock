@@ -6049,6 +6049,10 @@ normalize-range@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/normalize-range/-/normalize-range-0.1.2.tgz#2d10c06bdfd312ea9777695a4d28439456b75942"
 
+normalize-strings@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/normalize-strings/-/normalize-strings-1.1.0.tgz#b24a75ed48176394404f74649b5cb8040e899a75"
+
 normalize-url@1.9.1, normalize-url@^1.0.0:
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-1.9.1.tgz#2cc0d66b31ea23036458436e3620d85954c66c3c"
@@ -6550,6 +6554,10 @@ pkg-up@3.1.0, pkg-up@^3.1.0:
   resolved "https://registry.yarnpkg.com/pkg-up/-/pkg-up-3.1.0.tgz#100ec235cc150e4fd42519412596a28512a0def5"
   dependencies:
     find-up "^3.0.0"
+
+pluralize@^8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-8.0.0.tgz#1a6fa16a38d12a1901e0320fa017051c539ce3b1"
 
 pn@^1.1.0:
   version "1.1.0"
@@ -8548,6 +8556,13 @@ svgo@^1.0.0, svgo@^1.2.2:
     stable "^0.1.8"
     unquote "~1.1.1"
     util.promisify "~1.0.0"
+
+syllable@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/syllable/-/syllable-4.0.1.tgz#77afcef629cb2693f68b31ec51102d6134df5a5c"
+  dependencies:
+    normalize-strings "^1.1.0"
+    pluralize "^8.0.0"
 
 "sylvester@>= 0.0.12", "sylvester@>= 0.0.8":
   version "0.0.21"

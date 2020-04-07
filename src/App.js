@@ -1,11 +1,11 @@
 import React from 'react';
 
-import Sentencer from 'sentencer';
+import WordUtils from './wordUtils';
 
 function Layout({children}) {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-lg w-full">
+      <div className="w-full">
         {children}
       </div>
     </div>
@@ -42,49 +42,26 @@ function Button({children, color="indigo", className="", onClick, ...rest}) {
   );
 }
 
-function groupByLetter(words) {
-  return words.reduce(function(groupedWords, word) {
-    word = word.toLowerCase();
-    groupedWords[word[0]] = groupedWords[word[0]] || []
-    groupedWords[word[0]].push(word);
-    return groupedWords;
-  }, {})
-}
-
-function getWordsStartingWithLetter(letter, words) {
-  const groupedWords = groupByLetter(words);
-  return groupedWords[letter] || [];
-}
-
-function getRandomWord(words) {
-  return words[Math.floor(Math.random() * words.length)];
-}
-
-function getRandomWordStartingWithLetter(letter, words) {
-  const wordsStartingWithLetter = getWordsStartingWithLetter(letter, words);
-  return getRandomWord(wordsStartingWithLetter);
-}
-
-function getAlliterativeWords() {
-  let word1 = getRandomWord(Sentencer._adjectives);
-  let word2 = getRandomWordStartingWithLetter(word1[0], Sentencer._nouns);
-  return `${word1} ${word2}`;
-}
-
 function App() {
   const generateTeamName = (alliterate) => {
     if (alliterate) {
-      return getAlliterativeWords();
+      return WordUtils.getAlliterativeWords();
     }
     else {
-      return Sentencer.make("{{adjective}} {{noun}}");
+      return WordUtils.getWords();
     }
   };
 
-  const [teamName, setTeamName] = React.useState(generateTeamName());
+  const words = generateTeamName();
+  const [word0, setWord0] = React.useState(words[0]);
+  const [word1, setWord1] = React.useState(words[1]);
   const [alliterate, setAlliterate] = React.useState(false);
 
-  const randomizeTeamName = () => setTeamName(generateTeamName(alliterate));
+  const randomizeTeamName = () => {
+    let words = generateTeamName(alliterate);
+    setWord0(words[0]);
+    setWord1(words[1]);
+  };
 
   const handleAlliterateCheckbox = (event) => setAlliterate(event.target.checked);
 
@@ -94,16 +71,50 @@ function App() {
         <Header>Namerator</Header>
       </Card>
       <Card className="text-center">
-        <div>
-          <TeamName>{teamName}</TeamName>
-          <Button onClick={randomizeTeamName} className="ml-2">Generate</Button>
+        <div class="flex">
+          <div class="flex-2">
+            <TeamName>
+              <div class="flex">
+                <div class="flex-1">
+                  <div>{word0}</div>
+                  <div>
+                    <label class="text-gray-500">
+                      <span class="text-sm mr-2">
+                        Syllables
+                      </span>
+                      <input class="border" type="number" />
+                    </label>
+                  </div>
+                </div>
+                <div class="flex-1">
+                  <div>
+                    {word1}
+                  </div>
+                  <div class="mx-10">
+                    <label class="text-gray-500">
+                      <span class="text-sm mr-2">
+                        Syllables
+                      </span>
+                      <input class="border" type="number" />
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </TeamName>
+          </div>
+          <div class="flex-1">
+            <Button onClick={randomizeTeamName} className="ml-2">Generate</Button>
+          </div>
         </div>
-        <label class="text-gray-500">
-          <input class="mr-2" type="checkbox" checked={alliterate} onChange={handleAlliterateCheckbox} />
-          <span class="text-sm">
-            Alliterate
-          </span>
-        </label>
+        <div>
+          <label class="text-gray-500">
+            <input class="mr-2" type="checkbox" checked={alliterate} onChange={handleAlliterateCheckbox} />
+            <span class="text-sm">
+              Alliterate
+            </span>
+          </label>
+        </div>
+        
       </Card>
     </Layout>
   )
