@@ -51,15 +51,42 @@ function groupByLetter(words) {
   }, {})
 }
 
-console.log(groupByLetter(Sentencer._nouns));
-console.log(groupByLetter(Sentencer._adjectives));
+function getWordsStartingWithLetter(letter, words) {
+  const groupedWords = groupByLetter(words);
+  return groupedWords[letter] || [];
+}
+
+function getRandomWord(words) {
+  return words[Math.floor(Math.random() * words.length)];
+}
+
+function getRandomWordStartingWithLetter(letter, words) {
+  const wordsStartingWithLetter = getWordsStartingWithLetter(letter, words);
+  return getRandomWord(wordsStartingWithLetter);
+}
+
+function getAlliterativeWords() {
+  let word1 = getRandomWord(Sentencer._adjectives);
+  let word2 = getRandomWordStartingWithLetter(word1[0], Sentencer._nouns);
+  return `${word1} ${word2}`;
+}
 
 function App() {
-  const generateTeamName = () => Sentencer.make("{{noun}} {{noun}}");
+  const generateTeamName = (alliterate) => {
+    if (alliterate) {
+      return getAlliterativeWords();
+    }
+    else {
+      return Sentencer.make("{{adjective}} {{noun}}");
+    }
+  };
 
   const [teamName, setTeamName] = React.useState(generateTeamName());
+  const [alliterate, setAlliterate] = React.useState(false);
 
-  const randomizeTeamName = () => setTeamName(generateTeamName());
+  const randomizeTeamName = () => setTeamName(generateTeamName(alliterate));
+
+  const handleAlliterateCheckbox = (event) => setAlliterate(event.target.checked);
 
   return (
     <Layout>
@@ -67,8 +94,16 @@ function App() {
         <Header>Namerator</Header>
       </Card>
       <Card className="text-center">
-        <TeamName>{teamName}</TeamName>
-        <Button onClick={randomizeTeamName} className="ml-2">Generate</Button>
+        <div>
+          <TeamName>{teamName}</TeamName>
+          <Button onClick={randomizeTeamName} className="ml-2">Generate</Button>
+        </div>
+        <label class="text-gray-500">
+          <input class="mr-2" type="checkbox" checked={alliterate} onChange={handleAlliterateCheckbox} />
+          <span class="text-sm">
+            Alliterate
+          </span>
+        </label>
       </Card>
     </Layout>
   )
