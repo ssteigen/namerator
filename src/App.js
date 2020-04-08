@@ -1,5 +1,8 @@
 import React from 'react';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faDice, faRandom } from '@fortawesome/free-solid-svg-icons'
+
 import WordUtils from './wordUtils';
 
 function Layout({children}) {
@@ -68,7 +71,7 @@ function App() {
   return (
     <Layout>
       <Card className="text-center">
-        <Header>Namerator</Header>
+        <Header><FontAwesomeIcon icon={faDice} className="mr-2" />Namerator</Header>
         <hr className="my-8" />
         <div className="flex items-center">
           <div className="flex-1 py-2 text-xl capitalize">
@@ -78,7 +81,9 @@ function App() {
             </div>
           </div>
           <div class="flex-2 text-xl">
-            <Button onClick={randomizeTeamName} className="">Generate</Button>
+            <Button onClick={randomizeTeamName} className="">
+              <FontAwesomeIcon icon={faRandom} className="mx-2" />
+            </Button>
           </div>
         </div>
         <div className="flex flex-col my-4">
