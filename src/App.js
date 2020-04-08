@@ -4,7 +4,7 @@ import WordUtils from './wordUtils';
 
 function Layout({children}) {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center bg-teal-200 py-12 px-4 sm:px-6 lg:px-8">
       <div className="w-full">
         {children}
       </div>
@@ -67,49 +67,24 @@ function App() {
 
   return (
     <Layout>
-      <Card>
-        <Header>Namerator</Header>
-      </Card>
       <Card className="text-center">
-        <div class="flex">
-          <div class="flex-2">
-            <TeamName>
-              <div class="flex">
-                <div class="flex-1">
-                  <div>{word0}</div>
-                  <div>
-                    <label class="text-gray-500">
-                      <span class="text-sm mr-2">
-                        Syllables
-                      </span>
-                      <input class="border" type="number" />
-                    </label>
-                  </div>
-                </div>
-                <div class="flex-1">
-                  <div>
-                    {word1}
-                  </div>
-                  <div class="mx-10">
-                    <label class="text-gray-500">
-                      <span class="text-sm mr-2">
-                        Syllables
-                      </span>
-                      <input class="border" type="number" />
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </TeamName>
+        <Header>Namerator</Header>
+        <hr className="my-8" />
+        <div className="flex items-center">
+          <div className="flex-1 py-2 text-xl capitalize">
+            <div className="flex">
+              <div className="flex-1 bg-gray-200 rounded p-2 mr-4">{word0}</div>
+              <div className="flex-1 bg-gray-200 rounded p-2 mr-4">{word1}</div>
+            </div>
           </div>
-          <div class="flex-1">
-            <Button onClick={randomizeTeamName} className="ml-2">Generate</Button>
+          <div class="flex-2 text-xl">
+            <Button onClick={randomizeTeamName} className="">Generate</Button>
           </div>
         </div>
-        <div>
-          <label class="text-gray-500">
-            <input class="mr-2" type="checkbox" checked={alliterate} onChange={handleAlliterateCheckbox} />
-            <span class="text-sm">
+        <div className="flex flex-col my-4">
+          <label className="text-gray-darkest">
+            <input className="mr-2" type="checkbox" checked={alliterate} onChange={handleAlliterateCheckbox} />
+            <span className="text-sm">
               Alliterate
             </span>
           </label>
